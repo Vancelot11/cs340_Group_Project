@@ -1,6 +1,7 @@
 CREATE TABLE User (
 	name varchar(255) NOT NULL,
 	userName varchar(255) NOT NULL,
+	pass varchar(255) NOT NULL,
 	PRIMARY KEY (userName)
 );
 
@@ -8,13 +9,13 @@ CREATE TABLE Restaurant (
 	rid int(11) NOT NULL AUTO_INCREMENT,
 	openDate date NOT NULL,
 	name varchar(255) NOT NULL,
-	owner varchar(255) NOT NULL,  FOREIGN KEY (owner) REFERENCES User(userName),
+	owner varchar(255) DEFAULT NULL,  FOREIGN KEY (owner) REFERENCES User(userName),
 	PRIMARY KEY (rid)
 );
 
 CREATE TABLE Restaurant_address (
-	street varchar(255) NOT NULL,
 	num varchar(255) NOT NULL,
+	street varchar(255) NOT NULL,
 	city varchar(255) NOT NULL,
 	state varchar(255) NOT NULL,
 	zip varchar(255) NOT NULL,
@@ -29,10 +30,12 @@ CREATE TABLE Restaurant_type (
 		'Buffet',
 		'Burger',
 		'Casual',
+		'Chinese',
 		'Family',
 		'Fast Food',
 		'Fine Dining',
 		'Food Truck',
+		'German',
 		'Indian',
 		'Italian',
 		'Japanese',
