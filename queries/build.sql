@@ -1,15 +1,18 @@
 CREATE TABLE User (
-	name varchar(255) NOT NULL,
+	fname varchar(255) NOT NULL,
+	lname varchar(255) NOT NULL,
 	userName varchar(255) NOT NULL,
+	email varchar(255) NOT NULL,
 	pass varchar(255) NOT NULL,
 	PRIMARY KEY (userName)
 );
 
 CREATE TABLE Restaurant (
 	rid int(11) NOT NULL AUTO_INCREMENT,
+	image varchar(255),
 	openDate date NOT NULL,
 	name varchar(255) NOT NULL,
-	owner varchar(255) DEFAULT NULL,  FOREIGN KEY (owner) REFERENCES User(userName),
+	owner varchar(255) DEFAULT NULL, FOREIGN KEY (owner) REFERENCES User(userName),
 	PRIMARY KEY (rid)
 );
 
@@ -31,6 +34,7 @@ CREATE TABLE Restaurant_type (
 		'Burger',
 		'Casual',
 		'Chinese',
+		'Delivery',
 		'Family',
 		'Fast Food',
 		'Fine Dining',
@@ -68,12 +72,6 @@ CREATE TABLE Review (
 	CONSTRAINT PK_Review PRIMARY KEY (rid, userName)
 );
 
-CREATE TABLE User_favorites (
-	rid int(11) NOT NULL, FOREIGN KEY (rid) REFERENCES Restaurant (rid),
-	userName varchar(255) NOT NULL, FOREIGN KEY (userName) REFERENCES User(userName),
-	CONSTRAINT PK_User_favorites PRIMARY KEY (rid, userName)
-);
-
 CREATE TABLE Menu (
 	name varchar(255) NOT NULL,
 	days set('M', 'T', 'W', 'Th', 'F', 'Sat', 'Sun') NOT NULL,
@@ -85,6 +83,8 @@ CREATE TABLE Menu (
 
 CREATE TABLE Menu_item (
 	name varchar(255) NOT NULL,
+	type set('Drink', 'Appetizer', 'Entree', 'Breakfast', 'Lunch', 'Dinner') NOT NULL,
+	image varchar(255),
 	description text NOT NULL,
 	price decimal(10,2) NOT NULL,
 	menuName varchar(255) NOT NULL,
@@ -93,14 +93,21 @@ CREATE TABLE Menu_item (
 	PRIMARY KEY (name, rid, menuName)
 );
 
-describe Menu;
-describe Menu_item;
-describe Restaurant;
-describe Restaurant_address;
-describe Restaurant_hours;
-describe Restaurant_type;
-describe Review;
-describe User;
-describe User_favorites;
+CREATE TABLE User_favorites (
+	dishName varchar(255) NOT NULL,
+	rid int(11) NOT NULL,
+	menuName varchar(255) NOT NULL,
+	userName varchar(255) NOT NULL, FOREIGN KEY (userName) REFERENCES User(userName),
+	FOREIGN KEY (dishName, rid, menuName) REFERENCES Menu_item (name, rid, menuName),
+	CONSTRAINT PK_User_favorites PRIMARY KEY (dishName, menuName, rid, userName)
+);
 
-
+-- describe Menu;
+-- describe Menu_item;
+-- describe Restaurant;
+-- describe Restaurant_address;
+-- describe Restaurant_hours;
+-- describe Restaurant_type;
+-- describe Review;
+-- describe User;
+-- describe User_favorites;

@@ -1,6 +1,6 @@
-INSERT INTO User (name, username, pass)
+INSERT INTO User (fname, lname, username, email, pass)
 VALUES
-	('Kerry Vance', 'vancelot', 'totallymyrealpassword');
+	('Kerry', 'Vance', 'vancelot', 'vancelot@realwebsite.org', 'totallymyrealpassword');
 
 INSERT INTO Restaurant (name, openDate)
 VALUES
@@ -31,16 +31,6 @@ INSERT INTO Restaurant_hours (days, start, stop, rid)
 VALUES
 	(('M,T,W,Th,F'), '10:00:00', '17:00:00', (SELECT rid FROM Restaurant WHERE name = 'Burrito pueblo'));
 
-
-INSERT INTO Review (stamp, rating, rev, rid, userName)
-VALUES
-	('2020-01-01 00:01:00', '5', 'dope', (SELECT rid FROM Restaurant WHERE name = 'Burrito pueblo'), 'vancelot');
-
-INSERT INTO User_favorites (rid, userName)
-VALUES
-	((SELECT rid FROM Restaurant WHERE name = 'Burrito pueblo'), 'vancelot'),
-	((SELECT rid FROM Restaurant WHERE name = 'Sushi machi'), 'vancelot');
-
 INSERT INTO Menu (name, days, start, stop, rid)
 VALUES
 	('Happy hour', 'F,Sat,Sun', '5:00:00', '21:00:00', (SELECT rid FROM Restaurant WHERE name = 'Beer borough'));
@@ -48,3 +38,18 @@ VALUES
 INSERT INTO Menu_item (name, description, price, menuName, rid)
 VALUES
 	('Beer', "I mean... It's a beer right? because this is a bar", '2.00', 'Happy hour', (SELECT rid FROM Restaurant WHERE name = 'Beer borough'));
+
+INSERT INTO Review (stamp, rating, rev, rid, userName)
+VALUES
+	('2020-01-01 00:01:00', '5', 'dope', (SELECT rid FROM Restaurant WHERE name = 'Burrito pueblo'), 'vancelot');
+
+INSERT INTO User_favorites (dishName, menuName, rid, userName)
+VALUES
+	('Beer',
+		'Happy hour',
+		(SELECT rid
+		FROM Restaurant
+		WHERE name = 'Beer borough'),
+	'vancelot');
+
+
