@@ -1,8 +1,17 @@
+DROP TABLE IF EXISTS User_favorites;
+DROP TABLE IF EXISTS Restaurant_address;
+DROP TABLE IF EXISTS Restaurant_hours;
+DROP TABLE IF EXISTS Restaurant_type;
+DROP TABLE IF EXISTS Menu_item;
+DROP TABLE IF EXISTS Menu;
+DROP TABLE IF EXISTS Review;
+DROP TABLE IF EXISTS Restaurant;
+DROP TABLE IF EXISTS User;
+
 CREATE TABLE User (
 	fname varchar(255) NOT NULL,
 	lname varchar(255) NOT NULL,
 	userName varchar(255) NOT NULL,
-	email varchar(255) NOT NULL,
 	pass varchar(255) NOT NULL,
 	PRIMARY KEY (userName)
 );
@@ -23,7 +32,7 @@ CREATE TABLE Restaurant_address (
 	state varchar(255) NOT NULL,
 	zip varchar(255) NOT NULL,
 	rid int(11) NOT NULL, FOREIGN KEY (rid) REFERENCES Restaurant(rid),
-	CONSTRAINT PK_Restaurant_address PRIMARY KEY (street, num, rid)
+	PRIMARY KEY (street, num, rid)
 );
 
 CREATE TABLE Restaurant_type (
@@ -52,7 +61,7 @@ CREATE TABLE Restaurant_type (
 		'Vietnamese'
 	) NOT NULL,
 	rid int(11) NOT NULL, FOREIGN KEY (rid) REFERENCES Restaurant(rid),
-	CONSTRAINT PK_Restaurant_type PRIMARY KEY (att, rid)
+	PRIMARY KEY (att, rid)
 );
 
 CREATE TABLE Restaurant_hours (
@@ -60,16 +69,16 @@ CREATE TABLE Restaurant_hours (
 	start time NOT NULL,
 	stop time NOT NULL,
 	rid int(11) NOT NULL, FOREIGN KEY (rid) REFERENCES Restaurant(rid),
-	CONSTRAINT PK_Restaurant_hours PRIMARY KEY (start, stop, rid)
+	PRIMARY KEY (start, stop, rid)
 );
 
 CREATE TABLE Review (
 	stamp datetime NOT NULL,
-	rating enum('1', '2', '3', '4', '5') NOT NULL,
+	rating tinyint NOT NULL,
 	rev text,
 	rid int(11) NOT NULL, FOREIGN KEY (rid) REFERENCES Restaurant(rid),
 	userName varchar(255) NOT NULL, FOREIGN KEY (userName) REFERENCES User(userName),
-	CONSTRAINT PK_Review PRIMARY KEY (rid, userName)
+	PRIMARY KEY (stamp, rid, userName)
 );
 
 CREATE TABLE Menu (
@@ -78,7 +87,7 @@ CREATE TABLE Menu (
 	start time NOT NULL,
 	stop time NOT NULL,
 	rid int(11) NOT NULL, FOREIGN KEY (rid) REFERENCES Restaurant(rid),
-	CONSTRAINT PK_Menu PRIMARY KEY (rid, name)
+	PRIMARY KEY (rid, name)
 );
 
 CREATE TABLE Menu_item (
@@ -99,7 +108,7 @@ CREATE TABLE User_favorites (
 	menuName varchar(255) NOT NULL,
 	userName varchar(255) NOT NULL, FOREIGN KEY (userName) REFERENCES User(userName),
 	FOREIGN KEY (dishName, rid, menuName) REFERENCES Menu_item (name, rid, menuName),
-	CONSTRAINT PK_User_favorites PRIMARY KEY (dishName, menuName, rid, userName)
+	PRIMARY KEY (dishName, menuName, rid, userName)
 );
 
 -- describe Menu;

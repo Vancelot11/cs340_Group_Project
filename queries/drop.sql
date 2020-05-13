@@ -1,14 +1,14 @@
-drop table User_favorites;
+DROP TABLE User_favorites;
 
-drop table Restaurant_address;
-drop table Restaurant_hours;
-drop table Restaurant_type;
+DROP TABLE Restaurant_address;
+DROP TABLE Restaurant_hours;
+DROP TABLE Restaurant_type;
 
 
-drop table Menu_item;
-drop table Menu;
+DROP TABLE Menu_item;
+DROP TABLE Menu;
 
-drop table Review;
+DROP TABLE Review;
 
-drop table Restaurant;
-drop table User;
+DROP TABLE Restaurant;
+DROP TABLE User;

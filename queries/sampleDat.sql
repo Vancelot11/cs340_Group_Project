@@ -1,6 +1,6 @@
-INSERT INTO User (fname, lname, username, email, pass)
+INSERT INTO User (fname, lname, username, pass)
 VALUES
-	('Kerry', 'Vance', 'vancelot', 'vancelot@realwebsite.org', 'totallymyrealpassword');
+	('Kerry', 'Vance', 'vancelot', 'totallymyrealpassword');
 
 INSERT INTO Restaurant (name, openDate)
 VALUES
@@ -41,7 +41,8 @@ VALUES
 
 INSERT INTO Review (stamp, rating, rev, rid, userName)
 VALUES
-	('2020-01-01 00:01:00', '5', 'dope', (SELECT rid FROM Restaurant WHERE name = 'Burrito pueblo'), 'vancelot');
+	('2020-01-01 00:01:00', 5, 'dope', (SELECT rid FROM Restaurant WHERE name = 'Burrito pueblo'), 'vancelot'),
+	('2020-01-02 00:01:00', 3, 'dope', (SELECT rid FROM Restaurant WHERE name = 'Burrito pueblo'), 'vancelot');
 
 INSERT INTO User_favorites (dishName, menuName, rid, userName)
 VALUES
