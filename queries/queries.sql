@@ -39,3 +39,9 @@ INSERT INTO Menu (name, days, start, stop, rid)
 
 --Add new Menu_item
 INSERT INTO Menu_item (name, description, price, menuName, rid)
+
+--Validate password
+SELECT IF(:hash = (SELECT pass FROM User WHERE userName = :uname), 'YES', 'NO');
+
+--Update User password
+UPDATE User SET pass = :p WHERE userName = :uname
