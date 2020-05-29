@@ -1,0 +1,247 @@
+/* Navigation Bar */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #464646;
+    color: whitesmoke;
+    font-size: 1.25em;
+    font-weight: lighter;
+}
+
+.brand-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: .5rem;
+}
+
+.navbar-links {
+    height: 100%;
+}
+
+.navbar-links ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    list-style: none;
+}
+
+.navbar-links li a {
+    display: block;
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 1rem;
+}
+
+.navbar-links li:hover {
+    background-color: #555;
+}
+
+.toggle-button {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .toggle-button {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+
+    .navbar-links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navbar-links ul li {
+        text-align: center;
+    }
+
+    .navbar-links ul li a {
+        padding: .5rem 1rem;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+}
+
+/* Log In Form */
+html, body {
+    margin: 0;
+}
+
+.full-screen-container {
+    background-image: url("background_image.jpg");
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
+
+.login-container {
+    background-color: hsla(201, 100%, 6%, 0.6)*/;
+    padding: 50px 30px;
+    min-width: 400px;
+    width: 50%;
+    max-width: 600px;
+}
+
+.login-title {
+    color: whitesmoke;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    font-size: 1.75em;
+    font-weight: bold;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 1.25em;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    font-size: 1.25em;
+    padding: .15em .30em;
+    background-color: hsla(201, 100%, 91%, 0.3);
+    border: 1px solid white;
+    outline: none;
+    border-radius: 5px;
+    color: whitesmoke;
+    font-weight: lighter;
+}
+
+.input-group input:focus {
+    border: 1px solid hsl(201, 100%, 50%)
+}
+
+.login-button {
+    padding: 10px 30px;
+    width: 100%;
+    border-radius: 5px; 
+    background-color: black;
+    border: 1px solid white;
+    outline: none;
+    font-size: 1.25em;
+    color: whitesmoke;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: hsla(201, 100%, 50%, 0.3)
+}
+
+.login-button:focus {
+    background-color: hsla(201, 100%, 50%, 0.5)
+}
+
+.filter-box {
+	height: 100%; /* Full-height: remove this if you want "auto" height */
+	width: 200px; /* Set the width of the sidebar */
+	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+	z-index: 1; /* Stay on top */
+	top: 10; /* Stay at the top */
+	left: 0;
+	background-color: #111; /* Black */
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 20px;
+}
+
+.filter-box li, .sort-dropdown {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #818181;
+	display: block;
+	border: none;
+	background: none;
+	width:100%;
+	text-align: left;
+	cursor: pointer;
+	outline: none;
+}
+
+.sort-drop-container a {
+	color #f1f1f1;
+}
+
+.filter-box label:hover, .sort-dropdown:hover, .sort-drop-container a:hover {
+	color: #f1f1f1;
+}
+
+.filter-type {
+	font-size: 15px;
+}
+
+.sort-drop-container {
+	font-size: 15px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: green;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.sort-drop-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}

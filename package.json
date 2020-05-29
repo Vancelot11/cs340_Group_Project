@@ -1,0 +1,17 @@
+{
+  "name": "FoodApp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "build": "handlebars public/html/food.handlebars -f public/js/resultTemplate.js",
+    "prestart": "npm run build"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "express": "~4.17.0",
+    "handlebars": "~4.7.6",
+    "http-errors": "^1.7.3",
+    "morgan": "~1.10.0"
+  }
+}
