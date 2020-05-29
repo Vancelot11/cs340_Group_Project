@@ -30,6 +30,9 @@ app.get("/index.html", (req, res) => {
     res.sendFile(indexPath);
 });
 
+const resourceRouter = require("./routers/resources.js");
+app.use("/resources", resourceRouter);
+
 // Catch 404 and forward to error handler -->
 app.use((req, res, next) => {
     next(new createError.NotFound());
