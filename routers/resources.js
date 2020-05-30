@@ -21,18 +21,72 @@ connection.connect( (err) => {
 	console.log("connected as id ", connection.threadId);
 });
 
-router.post("/user/:fname/:lname/:pass/:userName", (req, res) => {
+router.post("/User/:fname/:lname/:pass/:userName", (req, res) => {
 	const user = {
 		fname		:	req.params.fname,
 		lname		:	req.params.lname,
 		pass		:	req.params.pass,
 		userName	:	req.params.userName
 	}
-	connection.query('INSERT INTO User SET ?', user, (err, res, fields) => {
-		if(err) throw err;
-		console.log('>>>RESULT: ', res);
-		ret = res;
+	new Promise((resolve, reject) => {
+		connection.query('INSERT INTO User SET ?', user, (err, res, fields) => {
+			if(err) {
+				reject(new Error(err.code));
+			}
+			else {
+				resolve(res.affectedRows);
+			}
+		});
+	}).then(r => {
+		console.log(">>>User affected rows: ", r);
+		res.status(200).end();
+	}).catch(err => {
+		console.log(">>>Err: ", err.message);
+		res.status(500).end();
 	});
 });
+
+router.get('/User/:userName', (req, res) => {
+	new Promise((resolve, reject) => {
+		connection.query('SELECT * FROM User WHERE userName = ?', [req.params.userName], (err, res, fields) => {
+			if(err) {
+				reject(new Error(err.code));
+			}
+			else {
+				console.log(">>>RESULT: ", res[0]);
+				resolve(res)
+			}
+		});
+	}).then(r => {
+		res.status(200).json(res.RowDataPacket);
+	}).catch(err => {
+		console.log(">>>ERR: ", err.message);
+		res.status(500).end();
+	});
+});
+
+router.post("Restaurant/:name/:openDate"), (req, res) => {
+	const rest = {
+		name		:	req.params.name,
+		openDate	:	req.params.opendate
+	}
+	new Promise((resolve, reject) => {
+		connection.query('INSERT INTO Restaurant SET ?', rest, (err, res, fields) => {
+			if(err) {
+				reject(new Error(err.code));
+			}
+			else {
+				resolve(res.affectedRows);
+			}
+		});
+	}).then(r => {
+		console.log(">>>Restaurant affected rows: ", r);
+		res.status(200).end();
+	}).catch(err => {
+		console.log(">>>Err: ", err.message);
+		res.status(500).end();
+	});
+}
+
 
 module.exports = router;

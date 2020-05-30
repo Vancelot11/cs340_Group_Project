@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "build": "handlebars public/html/food.handlebars -f public/js/resultTemplate.js",
-    "prestart": "npm run build"
+    "prestart": "npm run build",
+	 "dev":	"./node_modules/.bin/nodemon ./bin/www"
   },
   "dependencies": {
     "debug": "^4.1.1",
@@ -14,6 +15,7 @@
     "handlebars": "~4.7.6",
     "http-errors": "^1.7.3",
     "morgan": "~1.10.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.4"
   }
 }
