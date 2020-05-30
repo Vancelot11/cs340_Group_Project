@@ -21,27 +21,12 @@ connection.connect( (err) => {
 	console.log("connected as id ", connection.threadId);
 });
 
-router.get("/:table/:key/:val", (req, res) => {
-	new Promise((resolve, reject) => {
-		var sql = "SELECT * FROM " + connection.escapeId(req.params.table) + " WHERE " + connection.escapeId(req.params.key) + " = " + connection.escape(req.params.val);
-		connection.query(sql, (err, res, fields) => {
-			if(err) {
-				console.log(">>>SQL: ", err.sql);
-				reject(new Error(err.code));
-			}
-			else {
-				resolve(res);
-			}
-		});
-	}).then(r => {
-		console.log(">>>Result: ", r)
-		res.status(200).json(r);
-	}).catch(err => {
-		console.log(">>>Err: ", err.message);
-		res.status(400).json(err.message);
-	});
+/* GET home page. */
+/*Testing
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Cool, huh!', condition: true, anyArray: [1,2,3] });
 });
-
+*/
 router.get("/", (req, res) => {
 	new Promise((resolve, reject) => {
 		connection.query("SELECT * FROM Restaurant", (err, res, fields) => {
@@ -57,9 +42,34 @@ router.get("/", (req, res) => {
 		res.status(200).json(r);
 	}).catch(err => {
 		console.log(">>>Err: ", err.message);
-		res.status(400).json(err.message);
+		res.status(400).end();
 	});
 });
+
+router.get("/User/:userName", (req, res) => {
+	new Promise((resolve, reject) => {
+		connection.query("SELECT * FROM User WHERE userName = ?", [req.params.userName], (err, res, fields) => {
+			if(err) {
+				reject(new Error(err.code));
+			}
+			else {
+				if(res.length === 0) {
+					reject(new Error("User not found"))
+				}
+				else {
+					resolve(res);
+				}
+			}
+		});
+	}).then(r => {
+		console.log(">>>TYPE: ", typeof(r))
+		res.json(r);
+	}).catch(err => {
+		console.log(">>>ERR: ", err.message);
+		res.status(500).json(err.message);
+	});
+});
+
 
 router.post("/User/:fname/:lname/:pass/:userName", (req, res) => {
 	const user = {
