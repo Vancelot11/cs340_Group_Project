@@ -30,10 +30,6 @@ app.get("/index.html", (req, res) => {
     res.sendFile(indexPath);
 });
 
-app.get("/\d+/restaurant.html/", (req,res) => {
-	res.sendFile(path.join(pubdir, "html", "restaurant.html"));
-});
-
 const resourceRouter = require("./routers/resources.js");
 app.use("/resources", resourceRouter);
 

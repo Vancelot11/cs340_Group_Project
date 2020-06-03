@@ -15,7 +15,7 @@ function populate(results) {
 		console.log(results[i])
 		var div = `
 			"<div class="restaurant">
-				<a href = ${results[i].rid}/restaurant.html class="name-restaurant">${results[i].name}</a>
+				<a href = /restaurant.html?rid=${results[i].rid} class="name-restaurant">${results[i].name}</a>
 				<div class="head-review">
 					<img src="${results[i].image}" width="250px">
 				</div>
