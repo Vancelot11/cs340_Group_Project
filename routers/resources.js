@@ -23,7 +23,7 @@ connection.connect( (err) => {
 
 router.get("/", (req, res) => {
 	new Promise((resolve, reject) => {
-		connection.query("SELECT * FROM Restaurant", (err, res, fields) => {
+		connection.query("SELECT * FROM Restaurant r LEFT JOIN Restaurant_hours rh ON r.rid = rh.rid LEFT JOIN Restaurant_type rt ON r.rid = rt.rid", (err, res, fields) => {
 			if(err) {
 				reject(new Error(err.code));
 			}

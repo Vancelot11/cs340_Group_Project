@@ -1,4 +1,4 @@
-# cs340_Group_Project
+# cs340\_Group\_Project
 Intro to Databases Group Project
 
 # Usage
