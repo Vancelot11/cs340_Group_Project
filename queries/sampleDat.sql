@@ -31,9 +31,9 @@ INSERT INTO Restaurant_hours (days, start, stop, rid)
 VALUES
 	(('M,T,W,Th,F'), '10:00:00', '17:00:00', (SELECT rid FROM Restaurant WHERE name = 'Burrito pueblo'));
 
-INSERT INTO Menu (name, days, start, stop, rid)
+INSERT INTO Menu (name, days, start, stop, image,rid)
 VALUES
-	('Happy hour', 'F,Sat,Sun', '5:00:00', '21:00:00', (SELECT rid FROM Restaurant WHERE name = 'Beer borough'));
+	('Happy hour', 'F,Sat,Sun', '5:00:00', '21:00:00','https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGUoTydaMnVlJhHZK00Flat13iKvMhwMcWLrHFT3waMDzP9M6M&usqp=CAU',(SELECT rid FROM Restaurant WHERE name = 'Beer borough'));
 
 INSERT INTO Menu_item (name, description, price, menuName, rid)
 VALUES
