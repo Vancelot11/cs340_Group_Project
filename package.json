@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "build": "handlebars public/html/food.handlebars -f public/js/resultTemplate.js",
     "prestart": "npm run build",
-	 "dev":	"./node_modules/.bin/nodemon ./bin/www"
+    "dev": "./node_modules/.bin/nodemon ./bin/www"
   },
   "dependencies": {
     "debug": "^4.1.1",
