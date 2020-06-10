@@ -61,6 +61,35 @@ router.get("/:table/:key/:val", (req, res) => {
 	});
 });
 
+router.get("/Restaurant/:key/", (req, res) => {
+	new Promise((resolve, reject) => {
+		const sql = `
+		SELECT r.name, r.image, r.openDate, r.description, r.owner, ra.num, ra.street, ra.city, ra.state, ra.zip, rt.att, rh.days, rh.start, rh.stop
+		FROM Restaurant r
+		LEFT JOIN Restaurant_address ra ON ra.rid = r.rid
+		LEFT JOIN Restaurant_type rt ON rt.rid = r.rid
+		LEFT JOIN Restaurant_hours rh ON rh.rid = r.rid
+		WHERE r.rid = ?;
+		`
+		connection.query(sql, req.params.key, (err, res, fields) => {
+			if(err) {
+				console.log(">>>SQL: ", err.sql);
+				reject(new Error(err.code));
+			}
+			else {
+				resolve(res);
+			}
+		});
+	}).then(r => {
+		console.log(">>>Result: ", r)
+		res.status(200).json(r[0]);
+	}).catch(err => {
+		console.log(">>>Err: ", err.message);
+		res.status(400).json(err.message);
+	});
+});
+
+
 router.post("/User/:fname/:lname/:pass/:userName", (req, res) => {
 	const user = {
 		fname		:	req.params.fname,
