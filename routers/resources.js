@@ -151,3 +151,4 @@ router.post("Restaurant/:name/:openDate/:image"), (req, res) => {
 
 
 module.exports = router;
+>>>>>>> add parameter handling and links for rid
