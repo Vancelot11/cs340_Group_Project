@@ -3,6 +3,7 @@
     <head>
       <link rel="stylesheet" href="../css/background_style.css">
       <link rel="stylesheet" href="../css/styles.css">
+      <script src="../js/register.js" defer></script>
       <script src="../js/script.js" defer></script>
       <title> Home </title>
     </head>
@@ -28,25 +29,23 @@
         <div class="full-screen-container">
         <div class="login-container">
             <h3 class="login-title">Welcome</h3>
-            <form>
-                <div class="input-group">
-                    <label>First Name</label>
-                    <input type="text">
-                </div>
-                <div class="input-group">
-                    <label>Last Name</label>
-                    <input type="text">
-                </div>
-                <div class="input-group">
-                    <label>Username</label>
-                    <input type="email">
-                </div>
-                <div class="input-group">
-                    <label>Password</label>
-                    <input type="password">
-                </div>
-                <button type="submit" class="login-button">Sign Up</button>
-            </form>
+				 <div class="input-group">
+					  <label>First Name</label>
+					  <input type="text" id="fname">
+				 </div>
+				 <div class="input-group">
+					  <label>Last Name</label>
+					  <input type="text" id="lname">
+				 </div>
+				 <div class="input-group">
+					  <label>Username</label>
+					  <input type="text" id="username">
+				 </div>
+				 <div class="input-group">
+					  <label>Password</label>
+					  <input type="password" id="pass">
+				 </div>
+				 <button onclick="getUserInput()" type="submit" class="login-button">Sign Up</button>
         </div>
         </div>
     </body>
