@@ -140,7 +140,7 @@ router.post("/update/:table/:key/:id", (req, res) => {
 router.post("/delete/:table/:key/:val", (req, res) => {
 	const p = req.params;
 	new Promise((resolve, reject) => {
-		connection.query("DELETE FROM ? WHERE ? = ?;", [p.table, p.key, p.val], (err, res, fields) => {
+		connection.query("DELETE FROM ?? WHERE ?? = ?;", [p.table, p.key, p.val], (err, res, fields) => {
 			if(err) {
 				reject(new Error(err.code));
 			}
