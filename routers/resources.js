@@ -89,15 +89,12 @@ router.get("/Restaurant/:key/", (req, res) => {
 	});
 });
 
-
 router.post("/insert/:table/", (req, res) => {
 	const p = req.body;
 
-	console.log(">>> PARAMS: ", [req.params.table, p]);
 	new Promise((resolve, reject) => {
 		connection.query("INSERT INTO ?? SET ?", [req.params.table, p], (err, res, fields) => {
 			if(err) {
-				console.log(">>> SQL ERR: ", err.sql)
 				reject(new Error(err.code));
 			}
 			else {
@@ -112,23 +109,32 @@ router.post("/insert/:table/", (req, res) => {
 	});
 });
 
-router.post("/update/:table/:key/:val/:att/:update", (req, res) => {
-	const p = req.params;
+router.post("/update/:table/:key/:id", (req, res) => {
+	const p = req.body;
+
+	console.log(">>>UPDATE: ", req.params);
 	new Promise((resolve, reject) => {
-		connection.query("UPDATE ? SET ? = ? WHERE ? = ?;", [p.table, p.att, p.update, p.key, p.val], (err, res, fields) => {
+		console.log(mysql.format("UPDATE ?? SET ? WHERE ? = ?", [req.params.table, p, req.params.key, req.params.id]));
+		connection.query("UPDATE ?? SET ? WHERE ? = ?", [req.params.table, p, req.params.key, req.params.id], (err, res, fields) => {
 			if(err) {
+				console.log(">>> UPDATE SQL ERR: ", err.sql)
 				reject(new Error(err.code));
 			}
 			else {
-				resolve(res.affectedRows);
+				if(res.affectedRows == 0) {
+					reject(new Error("nothing found or something"))
+				}
+				else{
+					resolve(res.affectedRows);
+				}
 			}
 		});
 	}).then(r => {
-		console.log(">>>User affected rows: ", r);
+		console.log(">>>Success: ", r);
 		res.status(200).end();
 	}).catch(err => {
 		console.log(">>>Err: ", err.message);
-		res.status(500).json(er.message);
+		res.status(500).json(err.message);
 	});
 });
 
@@ -144,36 +150,11 @@ router.post("/delete/:table/:key/:val", (req, res) => {
 			}
 		});
 	}).then(r => {
-		console.log(">>>User affected rows: ", r);
 		res.status(200).end();
 	}).catch(err => {
 		console.log(">>>Err: ", err.message);
 		res.status(500).json(err.message);
 	});
 });
-
-router.post("Restaurant/:name/:openDate/:image"), (req, res) => {
-	const rest = {
-		name		:	req.params.name,
-		openDate	:	req.params.opendate
-	}
-	new Promise((resolve, reject) => {
-		connection.query("INSERT INTO Restaurant SET ?", rest, (err, res, fields) => {
-			if(err) {
-				reject(new Error(err.code));
-			}
-			else {
-				resolve(res.affectedRows);
-			}
-		});
-	}).then(r => {
-		console.log(">>>Restaurant affected rows: ", r);
-		res.status(200).end();
-	}).catch(err => {
-		console.log(">>>Err: ", err.message);
-		res.status(500).json(err.message);
-	});
-}
-
 
 module.exports = router;

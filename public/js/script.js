@@ -20,10 +20,10 @@ for (i = 0; i < dropdown.length; i++) {
   });
 }
 
-var xml = new XMLHttpRequest();
+var insXml = new XMLHttpRequest();
 
-xml.open("POST", "resources/insert/User", true);
-xml.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+insXml.open("POST", "resources/insert/User", true);
+insXml.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 var newUser = {
 	"fname"		:	"thisisafirstname",
 	"lname"		:	"thisismylastname",
@@ -31,4 +31,12 @@ var newUser = {
 	"pass"		:	"supersecurepassword"
 };
 
-xml.send(JSON.stringify(newUser));
+insXml.send(JSON.stringify(newUser));
+
+var upXml = new XMLHttpRequest();
+
+upXml.open("POST", "resources/update/User/userName/fullusername", true);
+upXml.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+var update = { "pass": "aBetterPassword" };
+
+upXml.send(JSON.stringify(update));
