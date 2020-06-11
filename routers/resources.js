@@ -114,8 +114,7 @@ router.post("/update/:table/:key/:id", (req, res) => {
 
 	console.log(">>>UPDATE: ", req.params);
 	new Promise((resolve, reject) => {
-		console.log(mysql.format("UPDATE ?? SET ? WHERE ? = ?", [req.params.table, p, req.params.key, req.params.id]));
-		connection.query("UPDATE ?? SET ? WHERE ? = ?", [req.params.table, p, req.params.key, req.params.id], (err, res, fields) => {
+		connection.query("UPDATE ?? SET ? WHERE ?? = ?", [req.params.table, p, req.params.key, req.params.id], (err, res, fields) => {
 			if(err) {
 				console.log(">>> UPDATE SQL ERR: ", err.sql)
 				reject(new Error(err.code));
