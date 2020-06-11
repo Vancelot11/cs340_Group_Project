@@ -81,7 +81,7 @@ router.get("/Restaurant/:key/", (req, res) => {
 			}
 		});
 	}).then(r => {
-		console.log(">>>Result: ", r)
+		console.log(">>>Result: ", r);
 		res.status(200).json(r[0]);
 	}).catch(err => {
 		console.log(">>>Err: ", err.message);
@@ -90,16 +90,14 @@ router.get("/Restaurant/:key/", (req, res) => {
 });
 
 
-router.post("/User/:fname/:lname/:pass/:userName", (req, res) => {
-	const user = {
-		fname		:	req.params.fname,
-		lname		:	req.params.lname,
-		pass		:	req.params.pass,
-		userName	:	req.params.userName
-	}
+router.post("/insert/:table/", (req, res) => {
+	const p = req.body;
+
+	console.log(">>> PARAMS: ", [req.params.table, p]);
 	new Promise((resolve, reject) => {
-		connection.query("INSERT INTO User SET ?", user, (err, res, fields) => {
+		connection.query("INSERT INTO ?? SET ?", [req.params.table, p], (err, res, fields) => {
 			if(err) {
+				console.log(">>> SQL ERR: ", err.sql)
 				reject(new Error(err.code));
 			}
 			else {
@@ -107,7 +105,6 @@ router.post("/User/:fname/:lname/:pass/:userName", (req, res) => {
 			}
 		});
 	}).then(r => {
-		console.log(">>>User affected rows: ", r);
 		res.status(200).end();
 	}).catch(err => {
 		console.log(">>>Err: ", err.message);

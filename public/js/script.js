@@ -19,3 +19,16 @@ for (i = 0; i < dropdown.length; i++) {
     }
   });
 }
+
+var xml = new XMLHttpRequest();
+
+xml.open("POST", "resources/insert/User", true);
+xml.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+var newUser = {
+	"fname"		:	"thisisafirstname",
+	"lname"		:	"thisismylastname",
+	"userName"	:	"fullusername",
+	"pass"		:	"supersecurepassword"
+};
+
+xml.send(JSON.stringify(newUser));
