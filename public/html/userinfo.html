@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/background_style.css">
+    <link rel="stylesheet" href="../css/restaurant.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/user.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title> User info </title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand-title"> User Info </div>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="index.html"> Home </a></li>
+                <li><a href="restaurant.html"> Restaurant </a></li>
+                <li><a href="about.html"> About </a></li>
+                <li><a href="register.html"> Sign Up </a></li>
+                <li><a href="login.html"> Log In </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="userSect" class="user-section" style="margin-left:200px;">
+    </div>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Password</th>
+            </tr>
+            <tr>
+                <td>${user[i].fname}</td>
+                <td>${user[i].lname}</td>
+                <td>${user[i].Username}</td>
+            </tr>
+        </table>
+    </div>
+    
+
+</body>
+</html>

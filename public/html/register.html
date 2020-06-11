@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <link rel="stylesheet" href="../css/background_style.css">
-      <link rel="stylesheet" href="../css/styles.css">
-      <script src="../js/register.js" defer></script>
-      <script src="../js/script.js" defer></script>
-      <title> Home </title>
-    </head>
-    <body>
-      <nav class="navbar">
+<head>
+    <link rel="stylesheet" href="../css/background_style.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/register.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title> Home </title>
+</head>
+<body>
+    <nav class="navbar">
         <div class="brand-title"> Sample Food App </div>
-        <a href = "#" class = "toggle-button">
-          <span class = "bar"></span>
-          <span class = "bar"></span>
-          <span class = "bar"></span>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </a>
-        <div class = "navbar-links">
-          <ul>
-             <li><a href = "index.html"> Home </a></li>
-            <li><a href = "restaurant.html"> Restaurant </a></li>
-            <li><a href = "about.html"> About </a></li>
-            <li><a href = "register.html"> Sign Up </a></li>
-            <li><a href = "login.html"> Log In </a></li>
-          </ul>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="index.html"> Home </a></li>
+                <li><a href="restaurant.html"> Restaurant </a></li>
+                <li><a href="about.html"> About </a></li>
+                <li><a href="register.html"> Sign Up </a></li>
+                <li><a href="login.html"> Log In </a></li>
+                <li><a href="userinfo.html"> User Info </a></li>
+            </ul>
         </div>
-      </nav>
-        
-        <div class="full-screen-container">
+    </nav>
+
+    <div id="registerSect" class="register-section" style="margin-left:200px;">
+    </div>
+
+    <div class="full-screen-container">
         <div class="login-container">
             <h3 class="login-title">Welcome</h3>
-				 <div class="input-group">
-					  <label>First Name</label>
-					  <input type="text" id="fname">
-				 </div>
-				 <div class="input-group">
-					  <label>Last Name</label>
-					  <input type="text" id="lname">
-				 </div>
-				 <div class="input-group">
-					  <label>Username</label>
-					  <input type="text" id="username">
-				 </div>
-				 <div class="input-group">
-					  <label>Password</label>
-					  <input type="password" id="pass">
-				 </div>
-				 <button onclick="getUserInput()" type="submit" class="login-button">Sign Up</button>
+            <div class="input-group">
+                <label>First Name</label>
+                <input type="text" id="fname">
+            </div>
+            <div class="input-group">
+                <label>Last Name</label>
+                <input type="text" id="lname">
+            </div>
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="username">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="pass">
+            </div>
+            <button onclick="getUserInput()" type="submit" class="login-button">Sign Up</button>
         </div>
-        </div>
-    </body>
+    </div>
+
+</body>
 </html>
