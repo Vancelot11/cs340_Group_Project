@@ -58,7 +58,8 @@ VALUES
 	
 INSERT INTO Menu (name, days, start, stop, rid)
 VALUES
-	('Happy hour', 'F,Sat,Sun', '5:00:00', '21:00:00', (SELECT rid FROM Restaurant WHERE name = 'Beer borough'));
+	('Happy hour', 'F,Sat,Sun', '5:00:00', '21:00:00', (SELECT rid FROM Restaurant WHERE name = 'Beer borough')),
+	('Dinner', 'M,T,W,Th,F', '5:00:00', '21:00:00', (SELECT rid FROM Restaurant WHERE name = 'Beer borough'));
 
 INSERT INTO Menu_item (name, description, price, menuName, rid)
 VALUES
